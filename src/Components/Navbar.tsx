@@ -13,14 +13,13 @@ export default function Navbar() {
                         <Dumbbell size={20} strokeWidth={2.5} />
                     </div>
                     <span className="text-xl font-black tracking-tight text-white">
-                        FIT<span className="text-[#ccff00]">LOG</span>
-                    </span>
+                        FITLOG</span>
                 </Link>
                 <div className="hidden items-center gap-8 md:flex">
                     <Link
                         href="/"
                         className="text-sm font-semibold uppercase tracking-wide text-[#ccff00]"
-                        >
+                    >
                         Workout
                     </Link>
 
@@ -35,7 +34,7 @@ export default function Navbar() {
                     <Link
                         href="/my-plan"
                         className="rounded-full bg-[#ccff00] px-4 py-2 text-xs font-black uppercase text-black"
-                        >
+                    >
                         Plan 0
                     </Link>
 
