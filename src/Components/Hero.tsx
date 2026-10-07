@@ -34,6 +34,7 @@ export default function Hero() {
                         alt="Workout illustration"
                         width={500}
                         height={500}
+                        loading="eager"
                         className="h-[92%] w-auto object-contain object-bottom"
                     />
                 </div>
