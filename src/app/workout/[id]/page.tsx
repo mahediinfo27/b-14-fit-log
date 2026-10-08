@@ -1,8 +1,9 @@
 import Link from "next/link";
+import WorkoutActions from "../../../Components/WorkoutActions";
 import { ArrowLeft, Clock, Flame, Star } from "lucide-react";
 
 interface Workout {
-  id: string;
+  id: number;
   name: string;
   image: string;
   muscleGroups: string[];
@@ -136,15 +137,7 @@ export default async function WorkoutPage({
                <span className="font-bold">{workout.difficulty}</span>
               </div>
             </div>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <button className="rounded-md bg-[#ccff00] px-6 py-3 text-xs font-black uppercase text-black transition hover:bg-[#d8ff33]">
-                Add to Plan
-              </button>
-       
-        <button className="rounded-md border border-white/10 px-6 py-3 text-xs font-black uppercase text-white transition hover:border-[#ccff00] hover:text-[#ccff00]">
-            Save Workout
-        </button>
-            </div>
+            <WorkoutActions workout={workout} />
           </div>
         </div>
 
