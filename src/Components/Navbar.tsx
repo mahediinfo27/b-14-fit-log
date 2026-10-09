@@ -2,8 +2,44 @@
 
 import Link from "next/link";
 import { Dumbbell } from "lucide-react";
+import { useEffect,useState } from "react";
+import type { Workout } from "../types/workout";
+
+
+const PLAN_KEY = "fitlog-plan";
+const SAVED_KEY = "fitlog-saved";
 
 export default function Navbar() {
+    
+    
+ const [planCount, setPlanCount] = useState(0);
+ const [saveCount, setSavedCount] = useState(0);
+ 
+  useEffect(() => {
+    const updateCounts = () => {
+        const plan = JSON.parse(
+            localStorage.getItem(PLAN_KEY) || "[]"
+        ) as Workout[];
+
+        const saved = JSON.parse(
+            localStorage.getItem(SAVED_KEY) || "[]"
+        ) as Workout[];
+        setPlanCount(plan.length);
+        setSavedCount(saved.length);
+    };
+
+    updateCounts();
+
+    window.addEventListener("fitlog-storage", updateCounts);
+    window.addEventListener("storage", updateCounts);
+
+    return () => {
+        window.removeEventListener("fitlog-storage", updateCounts);
+        window.removeEventListener("storage", updateCounts);
+    };
+  }, []);
+    
+   
     return (
         <header className="border-b border-white/10 bg-[#0b0b0b]">
             <nav className="mx-auto flex min-h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
@@ -35,13 +71,13 @@ export default function Navbar() {
                         href="/my-plan"
                         className="rounded-full bg-[#ccff00] px-4 py-2 text-xs font-black uppercase text-black"
                     >
-                        Plan 0
+                        Plan {planCount}
                     </Link>
 
                     <Link
                         href="/my-plan"
                         className="rounded-full border-white/30 px-4 py-2 text-xs font-black uppercase text-white">
-                        Saved 0
+                        Saved {saveCount}
                     </Link>
                 </div>
             </nav>
